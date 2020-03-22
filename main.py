@@ -1,26 +1,27 @@
 import time
 
 from dataio import Audio
-from dataio import Robot
+#from dataio import Robot
 
 stop = False
 
+#Robot.move()
 
 # Uma nova frase foi reconhecida
 def speech_recognized(phrase):
     print(phrase)
     entry = phrase.lower()
-    if entry == "isso é um assalto":
-        Robot.hands_up()
+    if entry == "levante as mãos":
+        #Robot.hands_up()
         Audio.say("por favor não me machuque")
         return
 
-    if entry == "de pé":
-        Robot.view_top()
+    if entry == "ande para frente":
+        #Robot.move()
         return
 
-    if entry == "desligar":
-        stop = True
+    if entry == "de pé":
+        #Robot.hands_bottom()
         return
 
     Audio.say("Não entendi o que você falou")
@@ -28,6 +29,8 @@ def speech_recognized(phrase):
 
 audioInputSensor = Audio.Input()
 audioInputSensor.start(speech_recognized)
+
+Audio.say("Sistema iniciado")
 
 while not stop:
     time.sleep(1000)
