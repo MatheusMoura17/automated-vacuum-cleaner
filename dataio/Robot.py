@@ -3,7 +3,7 @@ from random import randrange
 from pyfirmata2 import Arduino
 import time
 
-board = Arduino(Arduino.AUTODETECT)
+board = Arduino("/dev/ttyUSB0 ")
 
 in1 = board.get_pin('d:10:o')
 in2 = board.get_pin('d:9:o')
@@ -14,16 +14,22 @@ supersonic_trigger = board.get_pin('d:5:o')
 servo_right = board.get_pin('d:4:s')
 servo_left = board.get_pin('d:3:s')
 
-def test_motor():
-    in1.write(True)
-    in2.write(False)
+
+def move_foward():
+    in2.write(True)
     in3.write(True)
-    in4.write(False)
-    time.sleep(1)
-    in1.write(False)
-    in2.write(False)
-    in3.write(False)
-    in4.write(False)
+
+def move_back():
+    in1.write(True)
+    in4.write(True)
+
+def turn_left():
+    in1.write(True)
+    in3.write(True)
+
+def turn_right():
+    in2.write(True)
+    in4.write(True)
 
 def get_distance():
     supersonic_trigger.write(True)
