@@ -1,10 +1,10 @@
 import time
 
 from dataio import Audio
-#from dataio import Robot
+from dataio import Robot
 
 stop = False
-
+Robot.play()
 #Robot.move()
 
 # Uma nova frase foi reconhecida
