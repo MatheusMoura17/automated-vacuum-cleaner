@@ -3,7 +3,7 @@ from random import randrange
 from pyfirmata2 import Arduino
 import time
 
-board = Arduino("/dev/ttyUSB0 ")
+board = Arduino("/dev/ttyUSB0")
 
 in1 = board.get_pin('d:10:o')
 in2 = board.get_pin('d:9:o')
@@ -15,23 +15,29 @@ servo_right = board.get_pin('d:4:s')
 servo_left = board.get_pin('d:3:s')
 
 
-def move_foward():
+def motor_idle():
+    in1.write(False)
+    in2.write(False)
+    in3.write(False)
+    in4.write(False)
+
+def motor_foward():
     in2.write(True)
     in3.write(True)
 
-def move_back():
+def motor_back():
     in1.write(True)
     in4.write(True)
 
-def turn_left():
+def motor_left():
     in1.write(True)
     in3.write(True)
 
-def turn_right():
+def motor_right():
     in2.write(True)
     in4.write(True)
 
-def get_distance():
+def sensor_distance():
     supersonic_trigger.write(True)
     board.pass_time(0.00015)
     supersonic_trigger.write(False)
@@ -54,9 +60,11 @@ def get_distance():
 
     return distance
 
+
 def hands_middle():
     servo_left.write(90)
     servo_right.write(90)
+
 
 def hands_up():
     servo_left.write(0)
@@ -66,30 +74,3 @@ def hands_up():
 def hands_bottom():
     servo_left.write(175)
     servo_right.write(0)
-
-def move():
-    hands_middle()
-
-    for a in range(10):
-        for i in range(90):
-            servo_right.write(90 - i)
-            servo_left.write(90 + i)
-            time.sleep(0.02)
-        time.sleep(0.5)
-        # for i in range(90):
-        #     servo_right.write(90-i)
-        #     servo_left.write(175-i)
-        #     time.sleep(0.01)
-        # for i in range(90):
-        #     servo_right.write(0+i)
-        #     servo_left.write(90+i)
-        #     time.sleep(0.01)
-    hands_middle()
-
-
-def down():
-    servo_left.write(175)
-
-
-def up():
-    servo_left.write(70)
