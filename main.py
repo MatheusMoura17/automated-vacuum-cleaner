@@ -5,6 +5,8 @@ from dataio import Robot
 
 stop = False
 
+Robot.hands_middle()
+
 # Uma nova frase foi reconhecida
 def speech_recognized(phrase):
     print(phrase)
