@@ -1,9 +1,9 @@
 from random import randrange
 
-from pyfirmata import Arduino
+from pyfirmata2 import Arduino
 import time
 
-board = Arduino("com6")
+board = Arduino(Arduino.AUTODETECT)
 
 in1 = board.get_pin('d:10:o')
 in2 = board.get_pin('d:9:o')
