@@ -5,7 +5,23 @@ from dataio import Robot
 
 stop = False
 
-Robot.hands_middle()
+def move():
+    Robot.hands_middle()
+    Robot.motor_foward()
+    time.sleep(5)
+    Robot.motor_idle()
+    Robot.motor_left()
+    time.sleep(0.2)
+    Robot.motor_idle()
+    Robot.hands_up()
+    Robot.motor_foward()
+    time.sleep(0.2)
+    Robot.motor_idle()
+    Robot.motor_foward()
+    time.sleep(5)
+    Robot.motor_idle()
+
+move()
 
 # Uma nova frase foi reconhecida
 def speech_recognized(phrase):
@@ -23,10 +39,10 @@ def speech_recognized(phrase):
     Audio.say("Não entendi o que você falou")
 
 
-audioInputSensor = Audio.Input()
-audioInputSensor.start(speech_recognized)
+# audioInputSensor = Audio.Input()
+# audioInputSensor.start(speech_recognized)
 
-Audio.say("Sistema iniciado")
+# Audio.say("Sistema iniciado")
 
-while not stop:
-    time.sleep(1000)
+# while not stop:
+ #   time.sleep(1000)
